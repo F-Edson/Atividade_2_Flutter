@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';  
-//tmj '_' // 
+import 'package:flutter/material.dart';
+//tmj '_' //
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -98,46 +98,53 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               const SizedBox(height: 20.0),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Column(
-                  children: [
-                    const Text(
-                      'Resultado:',
-                    ),
-                    const SizedBox(height: 15.0),
-                    Text(
-                      imcResult.toStringAsFixed(2),
-                      style: const TextStyle(fontSize: 35.0),
-                    ),
-                    const SizedBox(height: 10.0),
-                    Text(
-                      imcCategory(imcResult: imcResult),
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                          fontWeight: FontWeight.bold),
+              imcResult > 1.0
+                  ? Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .primary
+                            .withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Column(
+                        children: [
+                          const Text(
+                            'Resultado:',
+                          ),
+                          const SizedBox(height: 15.0),
+                          Text(
+                            imcResult.toStringAsFixed(2),
+                            style: const TextStyle(fontSize: 35.0),
+                          ),
+                          const SizedBox(height: 10.0),
+                          Text(
+                            imcCategory(imcResult: imcResult),
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
                     )
-                  ],
-                ),
-              ),
+                  : const SizedBox.shrink(),
               const SizedBox(height: 20.0),
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      child: const Text('LIMPAR'),
-                      onPressed: () {
-                        ClearResult();
-                      },
-                    ),
-                  ),
-                ],
-              ),
+              imcResult > 1.0
+                  ? Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            child: const Text('LIMPAR'),
+                            onPressed: () {
+                              ClearResult();
+                            },
+                          ),
+                        ),
+                      ],
+                    )
+                  : const SizedBox.shrink(),
             ],
           ),
         ),
